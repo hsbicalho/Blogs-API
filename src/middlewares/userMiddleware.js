@@ -28,7 +28,7 @@ const validateUser = (req, res, next) => {
   console.log(displayName, email, password);
   const { error } = userSchema.validate({ displayName, email, password });
   if (error !== undefined) {
-    return res.status(400).json(error.message);
+    return res.status(400).json({ message: error.message });
   }
   next();
 };
