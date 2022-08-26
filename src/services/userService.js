@@ -9,4 +9,16 @@ const postUser = async ({ displayName, email, password, image }) => {
   return token;
 };
 
-module.exports = { postUser };
+const getAllUsers = async () => {
+  const allUsers = await User.findAll({ attributes: { exclude: ['password'] } });
+  if (!allUsers) throw new Error('Users not found');
+  return allUsers;
+};
+
+const getById = async ({ id }) => {
+  const user = await User.findByPk(id, { attributes: { exclude: ['password'] } });
+  if (!user) throw new Error('User does not exist');
+  return user;
+};
+
+module.exports = { postUser, getAllUsers, getById };
