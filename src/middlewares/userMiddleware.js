@@ -25,7 +25,6 @@ password: Joi.string().min(6).required().messages({
 
 const validateUser = (req, res, next) => {
   const { displayName, email, password } = req.body;
-  console.log(displayName, email, password);
   const { error } = userSchema.validate({ displayName, email, password });
   if (error !== undefined) {
     return res.status(400).json({ message: error.message });
